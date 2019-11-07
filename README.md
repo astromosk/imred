@@ -4,4 +4,4 @@ Processing steps include trimming images, bias correction, and flat fielding.
 
 Run top level wrapper:
 
-imred_run.py *fits
+`imred_run.py *fits`
