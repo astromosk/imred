@@ -61,6 +61,11 @@ def bias_correct(obj_frames):
         bias = hdu_bias[1].data
 
     for file in obj_frames:
+
+        print('      Image '+file,end='\r',flush=True)
+        if file == obj_frames[-1]:
+            print('      done'.ljust(50,' '),end='\n',flush=True)
+
         # open and bias correct frame
         hdulist = fits.open(file)
         if len(hdulist) == 1:
@@ -85,6 +90,7 @@ def bias_correct(obj_frames):
         else:
             print('   '+out_file+' already exists.')
         hdulist.close()
+        
 
 #if __name__ == '__main__':
     
