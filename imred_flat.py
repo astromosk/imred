@@ -38,7 +38,7 @@ def master_flat(flat_frames,filter,params):
             all_frames.append(data/bkg(data))
         else:
             print('   Image '+file+' excluded from master flat.')
-            print('      Mean counts of'+str(data.mean())+'in non-linear regime.')
+            print('      Mean counts of '+str(data.mean())+' in non-linear regime.')
             
     # take median across all flat frames and normalize
     master = np.median(all_frames,axis=0)
