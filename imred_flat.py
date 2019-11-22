@@ -65,6 +65,11 @@ def flat_correct(obj_frames,filter):
     flat[flat == 0] = 0.01
     
     for file in obj_frames:
+ 
+        print('      Image '+file,end='\r',flush=True)
+        if file == obj_frames[-1]:
+            print('      done'.ljust(50,' '),end='\n',flush=True)
+ 
         # open and flat correct frames
         hdulist = fits.open(file)
         if len(hdulist) == 1:
