@@ -64,7 +64,7 @@ def bias_correct(obj_frames):
 
         print('      Image '+file,end='\r',flush=True)
         if file == obj_frames[-1]:
-            print('      done'.ljust(50,' '),end='\n',flush=True)
+            print('      done'.ljust(80,' '),end='\n',flush=True)
 
         # open and bias correct frame
         hdulist = fits.open(file)
