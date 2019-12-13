@@ -68,7 +68,7 @@ def flat_correct(obj_frames,filter):
  
         print('      Image '+file,end='\r',flush=True)
         if file == obj_frames[-1]:
-            print('      done'.ljust(50,' '),end='\n',flush=True)
+            print('      done'.ljust(80,' '),end='\n',flush=True)
  
         # open and flat correct frames
         hdulist = fits.open(file)
