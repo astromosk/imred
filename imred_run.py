@@ -100,7 +100,7 @@ def imred_run(filenames):
     
     # check that binning is uniform across images
     if len(t.group_by('binning').groups) != 1:
-        print('Not all images are same binning. Exiting...')
+        print('Not all images are same binning. See data_summary.txt. Exiting...')
         exit()
 
     # image types in this data set
