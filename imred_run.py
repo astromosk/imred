@@ -100,7 +100,7 @@ def imred_run(filenames):
     
     # check that binning is uniform across images
     if len(t.group_by('binning').groups) != 1:
-        print('Not all images are same binning. Exiting...')
+        print('Not all images are same binning. See data_summary.txt. Exiting...')
         exit()
 
     # image types in this data set
@@ -129,7 +129,7 @@ def imred_run(filenames):
             xmin,xmax,ymin,ymax = [int(s) for s in re.findall(r'\d+',trimsec)]
             
             # write new trimmed image
-            data = data[xmin:xmax,ymin:ymax]
+            data = data[ymin:ymax,xmin:xmax]
             if len(hdulist) == 1:
                 hdulist[0].data = data
             elif len(hdulist) == 2:
