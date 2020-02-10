@@ -45,8 +45,8 @@ instrument_keywords = ['LCAMMOD', 'INSTRUME']
 
 # table for storing summary data
 t = Table(names=('im','ut','airmass','imtype','target',
-                 'filter','exptime','binning'),
-          dtype=(object,object,float,object,object,object,float,object))
+                 'filter','exptime','binning','image_size'),
+          dtype=(object,object,float,object,object,object,float,object,object))
 
 def imred_run(filenames):
     """ Wrapper function for running reduction pipeline
@@ -72,12 +72,16 @@ def imred_run(filenames):
         hdulist = fits.open(file)
         if len(hdulist) == 1:
             hdr = hdulist[0].header
+            dat = hdulist[0].data
         elif len(hdulist) == 2:
             hdr = hdulist[0].header + hdulist[1].header
+            dat = hdulist[1].data
         else:
             print(file+' contains more than two image extensions. Exiting!')
             sys.exit()
-            
+
+        imsize = dat.shape
+
         if type(params['binning'][0]) == int:
             bin_x = params['binning'][0]
             bin_y = params['binning'][1]
@@ -92,7 +96,8 @@ def imred_run(filenames):
         t.add_row([file,hdr[params['time']],hdr[params['airmass']],
                    hdr[params['frame_type']],hdr[params['object']],
                    hdr[params['filter']],hdr[params['exptime']],
-                   str(bin_x)+'x'+str(bin_y)])
+                   str(bin_x)+'x'+str(bin_y),
+                   str(imsize)])
 
     # output summary table
     if not os.path.isfile('./data_summary.txt'):
@@ -101,6 +106,11 @@ def imred_run(filenames):
     # check that binning is uniform across images
     if len(t.group_by('binning').groups) != 1:
         print('Not all images are same binning. See data_summary.txt. Exiting...')
+        exit()
+
+    # check that all images are same size
+    if len(t.group_by('image_size').groups) != 1:
+        print('Not all images are the same size. See data_summary.txt. Exiting...')
         exit()
 
     # image types in this data set
