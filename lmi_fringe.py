@@ -23,7 +23,7 @@ def imred_fringe(filenames):
         hdu1 = fits.open(file,'update')
         hdu_fringe = fits.open(fringe_frame)
     
-        scale = np.median(hdu1[0].data[14:2049,3:2052])
+        scale = np.median(hdu1[0].data[3:2052,14:2049])
 
         hdu_fringe[0].data = hdu_fringe[0].data * scale
 
