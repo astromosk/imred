@@ -29,6 +29,8 @@ def imred_fringe(filenames):
 
         hdu1[0].data = hdu1[0].data - hdu_fringe[0].data + scale
 
+        hdu1[0].header.set('fringcor','True','Fringe frame correction applied (boolean)')
+        
         hdu_fringe.close()
         hdu1.close()
 
