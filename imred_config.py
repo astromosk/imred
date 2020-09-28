@@ -35,8 +35,8 @@ gtc_osiris = {
     'max_counts': 50000.,   # max counts before non-linear
     
     # instrument specific processing steps
-    'bias_correct' : True,
-    'flat_correct' : True,
+    'bias_correct' : False,
+    'flat_correct' : False,
     'trim' : True
 }
 
@@ -134,7 +134,7 @@ dct_lmi = {
     'airmass': 'AIRMASS',   # airmass of observation
     'binning': ('CCDSUM#blank0', 'CCDSUM#blank1'),    # x and y bin factors
     'target_name': 'OBJECT',  # target name keyword
-    'filter': 'FILTER1',  # filter keyword
+    'filter': 'FILTERS',  # filter keyword
     'exptime': 'EXPTIME',  # exposure time keyword (s)
     'data_region': 'TRIM01',   # trim region keyword
     
