@@ -17,7 +17,7 @@ astropy
 scipy
 astropy.photutils, astropy.table, astropy.io
 
-Steps:
+Steps (instrument dependent):
 trim all images
 create master bias
 bias correct flats and target frames
