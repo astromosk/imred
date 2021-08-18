@@ -94,7 +94,7 @@ def imred_run(filenames):
             bin_y = str(hdr[params['binning'][1]])
         
         t.add_row([file,hdr[params['time']],hdr[params['airmass']],
-                   hdr[params['frame_type']],hdr[params['object']],
+                   hdr[params['frame_type']],hdr[params['target_name']],
                    hdr[params['filter']],hdr[params['exptime']],
                    str(bin_x)+'x'+str(bin_y),
                    str(imsize)])
