@@ -10,7 +10,7 @@ import sys
 # telescope/instrument configurations
 implemented_instruments = ['hall_nasa42','DCT_lmi','SOAR 4.1m_Goodman Spectro',
                            '2.1m Otto Struve_','31-in_NASAcam','GTC_OSIRIS',
-                           'SOAR 4.1m_Goodman Spectrograph']
+                           'SOAR 4.1m_Goodman Spectrograph','NPOI_PW1000-1_FLI']
 
 
 # GTC, OSIRIS
@@ -41,6 +41,34 @@ gtc_osiris = {
     'trim' : True
 }
 
+
+# PW1m, FLI camera
+pw1m_fli = {
+    
+    # instrument-specific FITS header keywords
+    'time': 'UT',  # UT time at start of exposure
+    'airmass': 'AIRMASS',   # airmass of observation
+    'binning': ('XBINNING', 'YBINNING'),    # x and y bin factors
+    'target_name': 'OBJECT',  # target name keyword
+    'filter': 'FILTER',  # filter keyword
+    'exptime': 'EXPTIME',  # exposure time keyword (s)
+    'data_region': 'TRIMSEC',   # trim region keyword
+    
+    'frame_type': 'IMAGETYP',   # keyword for type of image
+    'bias': 'Bias Frame',  # bias frame_type
+    'skyflat': 'Flat Field',  # twilight flat frame_type
+    'domeflat': 'Dome Flat',  # dome flat frame_type
+    'object': 'Light Frame',  # object frame_type
+    
+    # instrument specific properties
+    'bias_counts': 2300.,    # typical bias frame counts
+    'max_counts': 40000.,   # max counts before non-linear
+    
+    # instrument specific processing steps
+    'bias_correct' : True,
+    'flat_correct' : True,
+    'trim' : False
+}
 
 # Lowell 31", NASAcam
 lowell31in_nasacam = {
@@ -220,7 +248,8 @@ params = {
     'SOAR 4.1m_Goodman Spectro':    soar_goodman,
     'SOAR 4.1m_Goodman Spectrograph':    soar_goodman_old,
     '31-in_NASAcam':                lowell31in_nasacam,
-    'GTC_OSIRIS':                   gtc_osiris
+    'GTC_OSIRIS':                   gtc_osiris,
+    'NPOI_PW1000-1_FLI':            pw1m_fli
 }
 
 def parameters(tel_inst):
