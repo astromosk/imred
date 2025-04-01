@@ -13,7 +13,7 @@ import numpy as np
 from astropy.io import fits
 from astropy.table import Table
 from scipy import stats
-from photutils import ModeEstimatorBackground
+from photutils.background import ModeEstimatorBackground
 
 def imred_fringe(filenames):
 
