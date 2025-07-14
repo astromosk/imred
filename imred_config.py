@@ -10,7 +10,36 @@ import sys
 # telescope/instrument configurations
 implemented_instruments = ['hall_nasa42','DCT_lmi','SOAR 4.1m_Goodman Spectro',
                            '2.1m Otto Struve_','31-in_NASAcam','GTC_OSIRIS',
-                           'SOAR 4.1m_Goodman Spectrograph','NPOI_PW1000-1_FLI','2.2m UH_SNIFS','LDT_POETS']
+                           'SOAR 4.1m_Goodman Spectrograph','NPOI_PW1000-1_FLI','2.2m UH_SNIFS','LDT_POETS','PJ1M_PJ1m_Moravian']
+
+
+# PJ1m, Moravian
+pj1m_moravian = {
+    
+    # instrument-specific FITS header keywords
+    'time': 'UT',  # UT time at start of exposure
+    'airmass': 'AIRMASS',   # airmass of observation
+    'binning': ('XBINNING', 'YBINNING'),    # x and y bin factors
+    'target_name': 'OBJECT',  # target name keyword
+    'filter': 'FILTER',  # filter keyword
+    'exptime': 'EXPTIME',  # exposure time keyword (s)
+    'data_region': 'TRIMSEC',   # trim region keyword
+    
+    'frame_type': 'IMAGETYP',   # keyword for type of image
+    'bias': 'Bias',  # bias frame_type
+    'skyflat': 'Flat',  # twilight flat frame_type
+    'domeflat': 'Flat',  # dome flat frame_type
+    'object': 'Light',  # object frame_type
+    
+    # instrument specific properties
+    'bias_counts': 511,    # typical bias frame counts
+    'max_counts': 60000.,   # max counts before non-linear
+    
+    # instrument specific processing steps
+    'bias_correct' : True,
+    'flat_correct' : True,
+    'trim' : False
+}
 
 
 # LDT, POETS
@@ -296,7 +325,7 @@ uh88_snifs = {
 }
 
 
-# translate telescope+instrument keywords into parameter set defined here
+# translate TELESCOP+'_'+INSTRUME keywords into parameter set defined here
 params = {
     'hall_nasa42':                  hall_nasa42,
     'DCT_lmi':                      dct_lmi,
@@ -307,7 +336,8 @@ params = {
     'GTC_OSIRIS':                   gtc_osiris,
     'NPOI_PW1000-1_FLI':            pw1m_fli,
     '2.2m UH_SNIFS':                uh88_snifs,
-    'LDT_POETS':                    ldt_poets
+    'LDT_POETS':                    ldt_poets,
+    'PJ1M_PJ1m_Moravian':           pj1m_moravian
 }
 
 def parameters(tel_inst):
